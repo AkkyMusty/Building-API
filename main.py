@@ -74,6 +74,11 @@ def get_random_cafe():
     #                          "coffee_price": random_cafe.coffee_price }
     #                      })
 
+@app.route("/all")
+def all():
+    all_cafe = db.session.execute(db.select(Cafe)).scalars().all()
+    return jsonify(cafes=[cafe.to_dict() for cafe in all_cafe ])
+
 # HTTP POST - Create Record
 
 # HTTP PUT/PATCH - Update Record
